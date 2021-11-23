@@ -1,8 +1,9 @@
 package arrays;
 
-
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class KthMaxMin {
     public static void main(String[] args) {
@@ -27,10 +28,6 @@ public class KthMaxMin {
                 kmax = val;
             }
         }
-
-        int arr[] = new int[4];
-
-        Arrays.stream(arr).boxed().collect(Collectors.toSet());
 
         System.out.println(kmax);
         System.out.println(kmin);
