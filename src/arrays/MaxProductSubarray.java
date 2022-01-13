@@ -30,7 +30,6 @@ public class MaxProductSubarray {
             max = Math.max(arr[i], max * arr[i]);
             min = Math.min(arr[i], min * arr[i]);
             maxProd = Math.max(maxProd, max);
-
         }
         return maxProd;
     }
