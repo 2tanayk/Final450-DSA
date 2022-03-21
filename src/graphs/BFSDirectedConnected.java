@@ -2,7 +2,7 @@ package graphs;
 
 import java.util.*;
 
-public class BFSDirected {
+public class BFSDirectedConnected {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -25,7 +25,7 @@ public class BFSDirected {
             addEdge(adjacencyList, source, destination);
         }
 
-        bfs(nV, adjacencyList);
+        System.out.println(bfs(nV, adjacencyList));
     }
 
     private static ArrayList<Integer> bfs(int nV, ArrayList<ArrayList<Integer>> adj) {
@@ -53,15 +53,5 @@ public class BFSDirected {
 
     private static void addEdge(ArrayList<ArrayList<Integer>> adjacencyList, int source, int destination) {
         adjacencyList.get(source).add(destination);
-    }
-
-    private static void printGraph(ArrayList<ArrayList<Integer>> adjacencyList) {
-        for (int i = 0; i < adjacencyList.size(); i++) {
-            System.out.print("Adjacency List of " + i + " ");
-            for (int j = 0; j < adjacencyList.get(i).size(); j++) {
-                System.out.print("->" + adjacencyList.get(i).get(j));
-            }
-            System.out.println();
-        }
     }
 }
