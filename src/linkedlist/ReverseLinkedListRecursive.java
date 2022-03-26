@@ -2,7 +2,7 @@ package linkedlist;
 
 import java.util.*;
 
-public class ReverseLinkedListIterative {
+public class ReverseLinkedListRecursive {
     private static class Node {
         int data;
         Node next;
@@ -40,16 +40,15 @@ public class ReverseLinkedListIterative {
     }
 
     private static Node reverseLinkedList(Node head) {
-        Node prev = null, cur = head;
-
-        while (cur != null) {
-            Node temp = cur.next;
-            cur.next = prev;
-            prev = cur;
-            cur = temp;
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        return prev;
+        Node newHead = reverseLinkedList(head.next);
+        Node headNext = head.next;
+        headNext.next = head;
+        head.next = null;
+        return newHead;
     }
 
     private static void printLinkedList(Node head) {
