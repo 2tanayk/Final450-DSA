@@ -36,8 +36,7 @@ public class WaterConnection {
         System.out.println(installAndMinimize(n, p, a, b, d));
     }
 
-    private static ArrayList<ArrayList<Integer>> installAndMinimize(int n, int p, ArrayList<Integer> a,
-                                                                    ArrayList<Integer> b, ArrayList<Integer> d) {
+    private static ArrayList<ArrayList<Integer>> installAndMinimize(int n, int p, ArrayList<Integer> a, ArrayList<Integer> b, ArrayList<Integer> d) {
         ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
 
         HashSet<Integer> tankHouses = new HashSet<>();
@@ -59,20 +58,16 @@ public class WaterConnection {
             if (tapHouses.contains(ai)) {
                 tapHouses.remove(ai);
             } else {
-                System.out.println("tank house adding:" + ai);
                 tankHouses.add(ai);
             }
 
             if (tankHouses.contains(bi)) {
                 tankHouses.remove(bi);
             } else {
-                System.out.println("tap house adding:" + bi);
                 tapHouses.add(bi);
             }
         }
 
-        System.out.println(tankHouses);
-        System.out.println(tapHouses);
 
         for (Integer tankH : tankHouses) {
             int key = tankH;
