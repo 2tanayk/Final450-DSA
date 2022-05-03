@@ -2,7 +2,7 @@ package graph;
 
 import java.util.*;
 
-public class DetectCycleInUndirectedGraph {
+public class DetectCycleInDirectedGraph {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -22,14 +22,16 @@ public class DetectCycleInUndirectedGraph {
             addEdge(adjacencyList, source, destination);
         }
 
-        System.out.println(undirectedGraphHasCycle(adjacencyList, nV));
+        System.out.println(directedGraphHasCycle(adjacencyList, nV));
     }
 
-    private static boolean undirectedGraphHasCycle(ArrayList<ArrayList<Integer>> graph, int nV) {
+    private static boolean directedGraphHasCycle(ArrayList<ArrayList<Integer>> graph, int nV) {
         boolean[] visited = new boolean[nV];
+
         for (int i = 0; i < nV; i++) {
+            boolean[] recursionStack = new boolean[nV];
             if (!visited[i]) {
-                if (dfs(graph, i, visited, -1)) {
+                if (dfs(graph, i, visited, recursionStack)) {
                     return true;
                 }
             }
@@ -37,23 +39,26 @@ public class DetectCycleInUndirectedGraph {
         return false;
     }
 
-    private static boolean dfs(ArrayList<ArrayList<Integer>> graph, int v, boolean[] visited, int parent) {
-        visited[v] = true;
+    private static boolean dfs(ArrayList<ArrayList<Integer>> graph, int v, boolean[] vis, boolean[] rStack) {
+        vis[v] = true;
+        rStack[v] = true;
 
         for (int adjacent : graph.get(v)) {
-            if (!visited[adjacent]) {
-                if (dfs(graph, adjacent, visited, v)) {
-                    return true;
-                } else if (adjacent != parent) {
+            if (!vis[adjacent]) {
+                if (dfs(graph, adjacent, vis, rStack)) {
                     return true;
                 }
+            } else if (rStack[adjacent]) {
+                return true;
             }
         }
+
+        rStack[v] = false;
+
         return false;
     }
 
     private static void addEdge(ArrayList<ArrayList<Integer>> graph, int source, int destination) {
         graph.get(source).add(destination);
-        graph.get(destination).add(source);
     }
 }
