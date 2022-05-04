@@ -2,7 +2,7 @@ package linkedlist;
 
 import java.util.*;
 
-public class DetectCycleInLinkedList {
+public class DetectLoopInLinkedList {
     private static class Node {
         int data;
         Node next;
