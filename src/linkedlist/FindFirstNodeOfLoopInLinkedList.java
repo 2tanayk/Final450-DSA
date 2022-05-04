@@ -2,7 +2,7 @@ package linkedlist;
 
 import java.util.*;
 
-public class RemoveLoopInLinkedList {
+public class FindFirstNodeOfLoopInLinkedList {
     private static class Node {
         int data;
         Node next;
@@ -30,13 +30,18 @@ public class RemoveLoopInLinkedList {
             temp.next = new Node(curData, null);
             temp = temp.next;
         }
+        Node node = findFirstOfLoop(head);
 
-        removeLoop(head);
+        if (node != null) {
+            System.out.println(node.data);
+        } else {
+            System.out.println("-1");
+        }
     }
 
-    private static void removeLoop(Node head) {
+    private static Node findFirstOfLoop(Node head) {
         if (head == null || head.next == null) {
-            return;
+            return null;
         }
 
         Node slow = head, fast = head.next;
@@ -47,18 +52,17 @@ public class RemoveLoopInLinkedList {
                 len = computeLoopLength(slow, fast);
                 break;
             }
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
 
         if (len != -1) {
             Node cur = head;
             Node next = head;
-            int ct = len;
 
-            while (ct > 0) {
+            while (len > 0) {
                 next = next.next;
-                ct--;
+                len--;
             }
 
             while (cur != next) {
@@ -66,17 +70,13 @@ public class RemoveLoopInLinkedList {
                 next = next.next;
             }
 
-            ct = len;
-            while (ct > 1) {
-                cur = cur.next;
-                ct--;
-            }
-
-            cur.next = null;
+            return cur;
         }
+
+        return null;
     }
 
-    public static int computeLoopLength(Node p1, Node p2) {
+    private static int computeLoopLength(Node p1, Node p2) {
         int ct = 1;
         p2 = p2.next;
 
