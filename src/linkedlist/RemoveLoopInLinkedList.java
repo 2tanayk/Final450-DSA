@@ -39,16 +39,54 @@ public class RemoveLoopInLinkedList {
             return;
         }
 
-        Node cur = head;
-        HashSet<Node> nodeSet = new HashSet<>();
+        Node slow = head, fast = head.next;
+        int len = -1;
 
-        while (cur.next != null) {
-            nodeSet.add(cur);
-            if (nodeSet.contains(cur.next)) {
-                cur.next = null;
+
+        while (fast != null && fast.next != null) {
+            if (slow == fast) {
+                len = computeLoopLength(slow, fast);
                 break;
             }
-            cur = cur.next;
+            fast = fast.next.next;
+            slow = slow.next;
         }
+
+
+        if (len != -1) {
+            Node cur = head;
+            Node next = head;
+            int ct = len;
+
+            while (ct > 0) {
+                next = next.next;
+                ct--;
+            }
+
+            while (cur != next) {
+                cur = cur.next;
+                next = next.next;
+            }
+
+            ct = len;
+            while (ct > 1) {
+                cur = cur.next;
+                ct--;
+            }
+
+            cur.next = null;
+        }
+    }
+
+    public static int computeLoopLength(Node p1, Node p2) {
+        int ct = 1;
+        p2 = p2.next;
+
+        while (p1 != p2) {
+            p2 = p2.next;
+            ct++;
+        }
+
+        return ct;
     }
 }
