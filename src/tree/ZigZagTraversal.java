@@ -14,16 +14,6 @@ public class ZigZagTraversal {
         }
     }
 
-    static class Pair {
-        Node node;
-        int lineNo;
-
-        public Pair(Node node, int lineNo) {
-            this.node = node;
-            this.lineNo = lineNo;
-        }
-    }
-
     public static void main(String[] args) {
         Node root = createBinaryTree();
 
@@ -70,7 +60,7 @@ public class ZigZagTraversal {
             nStack = tempStack;
             i++;
         }
-        
+
         return ans;
     }
 
