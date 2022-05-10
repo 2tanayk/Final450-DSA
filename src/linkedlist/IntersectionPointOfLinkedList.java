@@ -86,7 +86,6 @@ public class IntersectionPointOfLinkedList {
         }
     }
 
-
     private static Node createLinkedList(Node cur) {
         while (true) {
             System.out.println("Enter data for the next node:");
