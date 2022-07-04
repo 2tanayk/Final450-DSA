@@ -8,8 +8,6 @@ public class PermutationsOfAString {
 
         String s = sc.nextLine();
 
-        int len = s.length();
-
         System.out.println(findPermutations(s));
     }
 
