@@ -59,6 +59,5 @@ public class TopologicalSortDFS {
 
     private static void addEdge(ArrayList<ArrayList<Integer>> adjList, int source, int destination) {
         adjList.get(source).add(destination);
-        adjList.get(destination).add(source);
     }
 }
