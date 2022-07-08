@@ -72,10 +72,13 @@ public class DijkstrasAlgorithmAdjacencyList {
         ArrayList<Integer> temp = new ArrayList<>();
         temp.add(destination);
         temp.add(weight);
+
         adjList.get(source).add(temp);
+
         temp = new ArrayList<>();
         temp.add(source);
         temp.add(weight);
+
         adjList.get(destination).add(temp);
     }
 }
