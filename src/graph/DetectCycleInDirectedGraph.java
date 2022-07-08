@@ -27,9 +27,10 @@ public class DetectCycleInDirectedGraph {
 
     private static boolean directedGraphHasCycle(ArrayList<ArrayList<Integer>> graph, int nV) {
         boolean[] visited = new boolean[nV];
-
+        boolean[] recursionStack = new boolean[nV];
+        
         for (int i = 0; i < nV; i++) {
-            boolean[] recursionStack = new boolean[nV];
+
             if (!visited[i]) {
                 if (dfs(graph, i, visited, recursionStack)) {
                     return true;

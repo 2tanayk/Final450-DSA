@@ -44,9 +44,9 @@ public class DetectCycleInUndirectedGraph {
             if (!visited[adjacent]) {
                 if (dfs(graph, adjacent, visited, v)) {
                     return true;
-                } else if (adjacent != parent) {
-                    return true;
                 }
+            } else if (adjacent != parent) {
+                return true;
             }
         }
         return false;
