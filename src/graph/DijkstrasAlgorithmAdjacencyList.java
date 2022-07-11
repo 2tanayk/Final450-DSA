@@ -42,8 +42,11 @@ public class DijkstrasAlgorithmAdjacencyList {
     private static int[] dijkstra(int nV, ArrayList<ArrayList<ArrayList<Integer>>> adj, int src) {
         int[] dist = new int[nV];
         boolean[] vis = new boolean[nV];
+        //helps calculate the path, not relevant to this question on GFG
+        int[] prev = new int[nV];
 
         Arrays.fill(dist, Integer.MAX_VALUE);
+        Arrays.fill(prev, -1);
 
         dist[src] = 0;
 
@@ -70,6 +73,7 @@ public class DijkstrasAlgorithmAdjacencyList {
 
                 if (!vis[nextNode] && nextDist < dist[nextNode]) {
                     dist[nextNode] = nextDist;
+                    prev[nextNode] = curNode;
                     minQ.add(new Node(nextNode, nextDist));
                 }
             }
