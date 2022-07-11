@@ -3,7 +3,6 @@ package graph;
 import java.io.*;
 import java.util.*;
 
-
 class OliverAndTheGame {
     static int time = 1;
 
