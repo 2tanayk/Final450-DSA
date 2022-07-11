@@ -39,12 +39,11 @@ public class DijkstrasAlgorithmAdjacencyList {
         System.out.println(Arrays.toString(dijkstra(nV, adjList, src)));
     }
 
-    static int[] dijkstra(int nV, ArrayList<ArrayList<ArrayList<Integer>>> adj, int src) {
+    private static int[] dijkstra(int nV, ArrayList<ArrayList<ArrayList<Integer>>> adj, int src) {
         int[] dist = new int[nV];
+        boolean[] vis = new boolean[nV];
 
-        for (int i = 0; i < nV; i++) {
-            dist[i] = Integer.MAX_VALUE;
-        }
+        Arrays.fill(dist, Integer.MAX_VALUE);
 
         dist[src] = 0;
 
@@ -54,13 +53,24 @@ public class DijkstrasAlgorithmAdjacencyList {
 
         while (!minQ.isEmpty()) {
             Node cur = minQ.poll();
+            int curDist = cur.value;
+            int curNode = cur.vertex;
 
-            for (ArrayList<Integer> ls : adj.get(cur.vertex)) {
-                int vertex = ls.get(0);
-                int val = ls.get(1);
-                if (dist[cur.vertex] + val < dist[vertex]) {
-                    dist[vertex] = dist[cur.vertex] + val;
-                    minQ.add(new Node(vertex, dist[vertex]));
+            if (vis[curNode]) {
+                continue;
+            }
+
+            vis[curNode] = true;
+
+            for (ArrayList<Integer> ls : adj.get(curNode)) {
+                int nextNode = ls.get(0);
+                int weight = ls.get(1);
+
+                int nextDist = curDist + weight;
+
+                if (!vis[nextNode] && nextDist < dist[nextNode]) {
+                    dist[nextNode] = nextDist;
+                    minQ.add(new Node(nextNode, nextDist));
                 }
             }
         }
