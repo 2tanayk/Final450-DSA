@@ -30,7 +30,7 @@ public class BipartiteGraph {
 
         for (int i = 0; i < nV; i++) {
             if (vis[i] == -1) {
-                if (dfs(adj, i, vis, -1, 1)) {
+                if (dfs(adj, i, vis, 1)) {
                     return false;
                 }
             }
@@ -39,12 +39,12 @@ public class BipartiteGraph {
         return true;
     }
 
-    private static boolean dfs(ArrayList<ArrayList<Integer>> adj, int i, int[] vis, int parent, int col) {
+    private static boolean dfs(ArrayList<ArrayList<Integer>> adj, int i, int[] vis, int col) {
         vis[i] = col;
 
         for (Integer e : adj.get(i)) {
             if (vis[e] == -1) {
-                if (dfs(adj, e, vis, i, 3 - col)) {
+                if (dfs(adj, e, vis, 3 - col)) {
                     return true;
                 }
             } else if (vis[e] == col) {
