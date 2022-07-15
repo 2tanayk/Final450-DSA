@@ -72,7 +72,7 @@ public class MergeTwoBalancedBST {
     private static TreeNode<Integer> mergeSortedLinkedLists(TreeNode<Integer> head1, TreeNode<Integer> head2) {
         TreeNode<Integer> dummy = new TreeNode<>(-1);
 
-        TreeNode<Integer> cur = dummy, prev = null;
+        TreeNode<Integer> cur = dummy;
 
         while (head1 != null && head2 != null) {
             if (head1.data <= head2.data) {
