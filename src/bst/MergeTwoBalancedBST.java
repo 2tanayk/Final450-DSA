@@ -2,7 +2,7 @@ package bst;
 
 import java.util.*;
 
-public class MergeTwoBSTs {
+public class MergeTwoBalancedBST {
     private static final Scanner sc = new Scanner(System.in);
     static TreeNode<Integer> prev, head;
 
