@@ -41,7 +41,7 @@ public class IsBridgeEdge {
 
         for (int i = 0; i < nV; i++) {
             if (disc[i] == -1) {
-                dfs(adj, i, low, disc, parent, rStack, -1, c, d);
+                dfs(adj, i, low, disc, parent, rStack);
             }
         }
 
@@ -52,7 +52,7 @@ public class IsBridgeEdge {
         return 0;
     }
 
-    private static void dfs(ArrayList<ArrayList<Integer>> adj, int i, int[] low, int[] disc, int[] parent, boolean[] rStack, int p, int c, int d) {
+    private static void dfs(ArrayList<ArrayList<Integer>> adj, int i, int[] low, int[] disc, int[] parent, boolean[] rStack) {
         low[i] = disc[i] = time;
         rStack[i] = true;
 
@@ -62,7 +62,7 @@ public class IsBridgeEdge {
             if (disc[e] == -1) {
                 parent[e] = i;
 
-                dfs(adj, e, low, disc, parent, rStack, i, c, d);
+                dfs(adj, e, low, disc, parent, rStack);
 
                 low[i] = Math.min(low[i], low[e]);
 
