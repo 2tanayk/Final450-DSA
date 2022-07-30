@@ -15,7 +15,7 @@ public class IsEqualSumSubsetPossible {
             arr[i] = sc.nextInt();
         }
 
-        System.out.println();
+        System.out.println(equalPartition(n, arr));
     }
 
     static int equalPartition(int n, int[] arr) {
