@@ -33,11 +33,17 @@ public class CountAllSubsequencesWithProductLessThanK {
                 dp[i][j] = dp[i][j - 1];
 
                 if (arr[j - 1] < i) {
+                    /*
+                    * for eg.:
+                        Lets say the i=10 and our current element is 3 (and assume its the 3rd element),
+                        * so if we do NOT take the ceil then we would take dp[i][j]+=dp[3][2] + 1,
+                        * this would be wrong as dp[3][2] is the no. of subsequences having prod LESS than 3,
+                        * hence we would take ceil(10/3.0) which gives dp[4][2] (4 is excluded so no issues !)
+                    * */
                     dp[i][j] += dp[(int) Math.ceil((double) i / arr[j - 1])][j - 1] + 1;
                 }
             }
         }
-
 
         return dp[k][n];
     }
