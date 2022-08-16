@@ -22,76 +22,26 @@ public class LeftView {
     }
 
     private static ArrayList<Integer> leftView(Node root) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
         ArrayList<Integer> ans = new ArrayList<>();
-        int height = heightOfBinaryTree(root) - 1;
 
-        if (root == null) {
-            return ans;
-        }
-
-        Stack<Node> pStack = new Stack<>();
-        HashMap<Node, Integer> pDepthMap = new HashMap<>();
-
-
-        int depthTraversed = 0;
-        ans.add(root.data);
-
-        Node parent = root;
-        Node cur = root;
-
-        int backtrackD = height + 1;
-        boolean backtrackFlag = false;
-
-        while (true) {
-            // System.out.print(height+" "+depthTraversed);
-            if (cur != null && cur.left != null) {
-                pStack.add(cur);
-                pDepthMap.put(cur, depthTraversed);
-                cur = cur.left;
-
-                if (backtrackFlag) {
-                    backtrackD++;
-                }
-
-                if (backtrackFlag && backtrackD > depthTraversed) {
-                    ans.add(cur.data);
-                } else if (!backtrackFlag) {
-                    ans.add(cur.data);
-                    depthTraversed++;
-                }
-
-            } else if (cur != null && cur.right != null) {
-                pStack.add(cur);
-                pDepthMap.put(cur, depthTraversed);
-                cur = cur.right;
-
-                if (backtrackFlag) {
-                    backtrackD++;
-                }
-
-                if (backtrackFlag && backtrackD > depthTraversed) {
-                    ans.add(cur.data);
-                } else if (!backtrackFlag) {
-                    ans.add(cur.data);
-                    depthTraversed++;
-                }
-            } else {
-                if (depthTraversed == height || backtrackD == height) {
-                    break;
-                } else {
-                    if (!pStack.empty()) {
-                        backtrackFlag = true;
-                        Node temp = pStack.pop();
-                        cur = temp.right;
-                        backtrackD = pDepthMap.get(temp) + 1;
-                    } else {
-                        break;
-                    }
-                }
-            }
-        }
+        solve(root, 0, hm, ans);
 
         return ans;
+    }
+
+    private static void solve(Node root, int lvl, HashMap<Integer, Integer> hm, ArrayList<Integer> a) {
+        if (root == null) {
+            return;
+        }
+
+        if (!hm.containsKey(lvl)) {
+            hm.put(lvl, root.data);
+            a.add(root.data);
+        }
+
+        solve(root.left, lvl + 1, hm, a);
+        solve(root.right, lvl + 1, hm, a);
     }
 
     private static Node createBinaryTree() {
@@ -110,14 +60,4 @@ public class LeftView {
 
         return rootNode;
     }
-
-    private static int heightOfBinaryTree(Node root) {
-        if (root == null) {
-            return 0;
-        }
-
-        return Math.max(heightOfBinaryTree(root.left), heightOfBinaryTree(root.right)) + 1;
-    }
-
-
 }
