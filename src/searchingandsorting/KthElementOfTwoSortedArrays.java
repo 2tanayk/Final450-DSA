@@ -25,7 +25,7 @@ public class KthElementOfTwoSortedArrays {
         System.out.println(kthElement(arr1, arr2, n, m, k));
     }
 
-    public static long kthElement(int arr1[], int arr2[], int n, int m, int k) {
+    public static long kthElement(int[] arr1, int[] arr2, int n, int m, int k) {
         if (n > m) {
             return kthElement(arr2, arr1, m, n, k);
         }
