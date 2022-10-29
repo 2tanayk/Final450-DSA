@@ -34,7 +34,7 @@ public class AggressiveCows {
             int mid = (l + r) / 2;
 
             if (isPossible(d, mid, k)) {
-                maxD = Math.max(maxD, mid);
+                maxD = mid;
                 l = mid + 1;
             } else {
                 r = mid - 1;
