@@ -67,6 +67,10 @@ public class AllocateMinNumberOfPages {
             }
         }
 
-        return cur <= 0 || ct + 1 <= m;
+        if (cur > 0 && ct + 1 > m) {
+            return false;
+        }
+
+        return true;
     }
 }
